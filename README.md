@@ -1,24 +1,43 @@
-# Beyond-the-Bus-Stop-Brisbane-Public-Transport-Flow
-This project analyzes 17M+ Brisbane public transport trip records (3.6GB dataset) enriched with weather (BoM) and demographics (ABS Census) data to uncover commuter behavior, suburb connectivity, and demand patterns.
+# Beyond the Bus Stop — Brisbane Public Transport Flow
 
-Key Features
+**DATA7001 Project | Machine Learning & Data Visualization**
 
-Big Data ETL: Processed multi-source datasets with Polars for high-performance data wrangling.
+This project analyzes over **17 million Brisbane public transport trip records** (≈3.6GB), enriched with **weather (BoM)** and **demographic (ABS Census)** data, to uncover commuter behavior, suburb connectivity, and demand patterns.
 
-Demand Forecasting: Built and tuned LightGBM/XGBoost models to predict monthly bus ridership with strong accuracy.
+---
 
-Interactive Dashboards: Developed Tableau and Streamlit + Folium apps to visualize commuter flows, suburb-level demand, and operator dominance.
+## Key Features
+- **Big Data ETL:** Processed and cleaned multi-source datasets using Polars for efficient computation.  
+- **Demand Forecasting:** Built and tuned LightGBM/XGBoost models to predict monthly bus ridership with strong accuracy.  
+- **Interactive Dashboards:** Created Tableau and Streamlit visualizations to explore commuter flows and demand patterns.  
+- **Policy Insights:** Identified issues in operator dominance and suburb connectivity; proposed data-driven improvements.  
 
-Insights for Policy: Identified issues in route/operator dominance and suburb connectivity; provided data-driven recommendations for transport authorities.
+---
 
-What I Learned
+## What I Learned
+- Managing and analyzing large datasets (17M+ rows, 3.6GB).  
+- Advanced feature engineering with temporal and weather-based predictors.  
+- Creating interactive dashboards for technical and non-technical audiences.  
+- Working in an Agile, team-based environment with design thinking approaches.  
 
-Handling large-scale transport datasets efficiently (3.6GB+, 17M rows).
+---
 
-Advanced feature engineering with temporal and weather variables.
+## Tech Stack
+- **Languages & Libraries:** Python, Polars, LightGBM, XGBoost, Geopy  
+- **Visualization:** Streamlit, Folium, Tableau  
+- **Workflow:** Agile framework, Jira, design thinking  
 
-Building interactive, stakeholder-friendly dashboards for policy decision support.
+---
 
-Collaborating in a 6-person team using design thinking and Agile approaches.
+## Outcomes
+- Forecast models provided accurate monthly bus demand predictions.  
+- Dashboards visualized suburb-to-suburb flows, highlighting network bottlenecks.  
+- Insights supported recommendations for improving connectivity and reducing reliance on dominant operators.  
 
-Tech Stack: Python (Polars, LightGBM, Geopy), Streamlit, Folium, Tableau
+---
+
+## Repository Notes
+This repository contains project code, experiments, and outputs.  
+It is structured for demonstration and learning purposes, rather than as a production-ready system.  
+
+---
