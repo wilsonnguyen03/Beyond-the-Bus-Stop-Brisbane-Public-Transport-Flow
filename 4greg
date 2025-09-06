@@ -1,0 +1,58 @@
+import os
+import pandas as pd
+
+# Settings
+data_dir = "output_top1"
+direction = "outbound"  # or "inbound"
+output_csv = f"trip_summary_{direction}.csv"
+
+summary_rows = []
+
+for file in os.listdir(data_dir):
+    if file.endswith(f"{direction}.csv"):
+        origin_suburb = file.replace(f"_{direction}.csv", "").replace("_", " ").upper()
+        file_path = os.path.join(data_dir, file)
+
+        try:
+            df = pd.read_csv(file_path)
+        except Exception as e:
+            print(f"Error reading {file}: {e}")
+            continue
+
+        required_cols = [
+            "origin_stop_type", "route", "direction",
+            "destination_suburb", "destination_stop_name", "quantity"
+        ]
+        if df.empty or not all(col in df.columns for col in required_cols):
+            continue
+
+        trip_dict = {}
+
+        for _, row in df.iterrows():
+            dest_suburb_raw = str(row["destination_suburb"]).strip().upper()
+            dest_suburb = dest_suburb_raw.replace(", BRISBANE CITY", "")
+
+            origin_type = str(row["origin_stop_type"]).strip()
+            route = str(row["route"]).strip()
+            direction_val = str(row["direction"]).strip()
+            dest_stop_name = str(row["destination_stop_name"]).strip()
+            quantity = int(row["quantity"])
+
+            trip_tuple = (origin_type, route, direction_val, dest_stop_name, quantity)
+
+            if dest_suburb not in trip_dict:
+                trip_dict[dest_suburb] = [trip_tuple]
+            else:
+                trip_dict[dest_suburb].append(trip_tuple)
+
+        summary_rows.append({
+            "origin_suburb": origin_suburb,
+            "top_1_percent_trips": trip_dict
+        })
+
+# Save as CSV (convert dict to string)
+summary_df = pd.DataFrame(summary_rows)
+summary_df["top_1_percent_trips"] = summary_df["top_1_percent_trips"].apply(str)
+summary_df.to_csv(output_csv, index=False)
+
+print(f"CSV saved to: {output_csv}")
